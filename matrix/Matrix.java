@@ -5,16 +5,24 @@ public class Matrix{
 	private int[][] matrix;
 	private int rows;
 	private int columns;
+	private int currentRowPosition;
+	private int currentColumnPosition;
 
 	public Matrix(int rows, int columns){
+		this.currentColumnPosition = 0;
+		this.currentRowPosition = 0;
 		this.columns = columns;
 		this.rows = rows;
 		this.matrix = new int[rows][columns];		
 	};
 
-	public void put(int number, int rowNo, int columnNo){
-		if(rowNo <= this.rows && columnNo <= this.columns){
-			this.matrix[rowNo][columnNo] = number;
+	public void put(int number){
+		if(currentColumnPosition == this.columns){
+			this.matrix[++currentRowPosition][0] = number;
+			currentColumnPosition=1;
+		}else{
+			this.matrix[currentRowPosition][currentColumnPosition] = number;
+			currentColumnPosition++;
 		}
 	};
 
@@ -22,7 +30,7 @@ public class Matrix{
 		Matrix result = new Matrix(this.rows, this.columns);
 		for(int i = 0; i < this.rows; i++){
 			for(int j = 0; j < this.matrix[i].length;j++){
-				result.put(addend.matrix[i][j] + this.matrix[i][j], i, j);
+				result.put(addend.matrix[i][j] + this.matrix[i][j]);
 			};
 		};
 		return result;
@@ -48,10 +56,40 @@ public class Matrix{
 				for(int k = 0;k < this.columns;k++){
 					sum += this.matrix[i][k] * anotherMtx.matrix[k][j];
 				}
-				result.put(sum, i, j);
+				result.put(sum);
 			}
 		}
 		return result;
+	}
+
+	private Matrix subMtx(int i){
+		Matrix subMatrix = new Matrix(this.rows-1, this.columns-1);
+		for(int j = 0;j < this.rows;j++){
+			for(int k = 0;k < this.columns;k++){
+				if(j!=0 && k!=i){
+					subMatrix.put(this.matrix[j][k]);
+				}
+			};
+		};
+		return subMatrix;
+	}
+
+	private int diterminent(int flag){
+		if(this.rows == 2){
+			return (flag % 2==0)
+			? this.matrix[0][0] * this.matrix[1][1] - this.matrix[0][1] * this.matrix[1][0]
+			: -(this.matrix[0][0] * this.matrix[1][1] - this.matrix[0][1] * this.matrix[1][0]);
+		}
+		int result = 0;
+		for(int i = 0;i < this.rows;i++){
+			Matrix subMatrix = this.subMtx(i);
+			result += this.matrix[0][i] * subMatrix.diterminent(flag++);
+		};
+		return result;
+	}
+
+	public int calculateDiterminent(){
+		return this.diterminent(0);
 	}
 }
 

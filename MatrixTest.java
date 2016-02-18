@@ -24,6 +24,7 @@ public class MatrixTest {
   	expectedMtx.put(15,1,1);
   	Matrix resultMtx = matrix.addWith(anotherMatrix);
   	assertTrue(resultMtx.equals(expectedMtx));
+  	assertTrue(expectedMtx.equals(resultMtx));
   }
 
   @Test
@@ -54,6 +55,7 @@ public class MatrixTest {
 
   	Matrix resultMtx = matrix.addWith(anotherMatrix);
   	assertTrue(resultMtx.equals(expectedMtx));
+  	assertTrue(expectedMtx.equals(resultMtx));
   }
   @Test
   public void addition_test_for_negative_mtx() {
@@ -83,6 +85,7 @@ public class MatrixTest {
 
   	Matrix resultMtx = matrix.addWith(anotherMatrix);
   	assertTrue(resultMtx.equals(expectedMtx));
+  	assertTrue(expectedMtx.equals(resultMtx));
   }
 
   
@@ -108,6 +111,7 @@ public class MatrixTest {
 
   	Matrix resultMtx = matrix.multiplyWith(anotherMatrix);
   	assertTrue(resultMtx.equals(expectedMtx));
+  	assertTrue(expectedMtx.equals(resultMtx));
   }  
   
   @Test
@@ -136,6 +140,7 @@ public class MatrixTest {
 
   	Matrix resultMtx = matrix.multiplyWith(anotherMatrix);
   	assertTrue(resultMtx.equals(expectedMtx));
+  	assertTrue(expectedMtx.equals(resultMtx));
   }  
   @Test
   public void multiplication_test_for_3_by_2_and_2_by_3_matrix() {
@@ -168,5 +173,6 @@ public class MatrixTest {
 
   	Matrix resultMtx = matrix.multiplyWith(anotherMatrix);
   	assertTrue(resultMtx.equals(expectedMtx));
+  	assertTrue(expectedMtx.equals(resultMtx));
   }
 }

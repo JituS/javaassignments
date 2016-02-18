@@ -6,95 +6,143 @@ import java.util.Arrays;
 public class MatrixTest {
   @Test
   public void addition_test_for_2_by_2_mtx() {
-  	Matrix a = new Matrix(2,2);
-  	a.populate(10,0,0);
-  	a.populate(20,0,1);
-  	a.populate(20,1,0);
-  	a.populate(10,1,1);
+  	Matrix metrix = new Matrix(2,2);
+  	metrix.put(10,0,0);
+  	metrix.put(20,0,1);
+  	metrix.put(20,1,0);
+  	metrix.put(10,1,1);
 
-  	int[][] matrix = new int[][]{
-  	  { 1, 2},
-  	  { 2, 3}
-  	};
-  	int[][] expected = new int[][]{
-  	  { 11, 22},
-  	  { 22, 13}
-  	};
-  	int[][] result = a.addMatrices(matrix);
-  	assertTrue(Arrays.deepEquals(result, expected));
-  }
+  	Matrix anotherMatrix = new Matrix(2,2);
+  	anotherMatrix.put(1,0,0);
+  	anotherMatrix.put(2,0,1);
+  	anotherMatrix.put(2,1,0);
+  	anotherMatrix.put(5,1,1);
 
-  @Test
-  public void addition_test_for_3_by_3_mtx() {
-  	Matrix a = new Matrix(3,3);
-  	a.populate(10,0,0);
-  	a.populate(20,0,1);
-  	a.populate(22,0,2);
-
-  	a.populate(2,1,0);
-  	a.populate(6,1,1);
-  	a.populate(2,1,2);
-
-  	a.populate(2,2,0);
-  	a.populate(6,2,1);
-  	a.populate(2,2,2);
-
-  	int[][] matrix = new int[][]{
-  	  { 1, 2, 3},
-  	  { 2, 3, 4},
-  	  { 1, 3, 5}
-  	};
-  	int[][] expected = new int[][]{
-  	  { 11, 22, 25},
-  	  { 4, 9, 6},
-  	  { 3, 9, 7}
-  	};
-  	int[][] result = a.addMatrices(matrix);
-  	assertTrue(Arrays.deepEquals(result, expected));
+  	Matrix expectedMtx = new Matrix(2 ,2);
+  	expectedMtx.put(11,0,0);
+  	expectedMtx.put(22,0,1);
+  	expectedMtx.put(22,1,0);
+  	expectedMtx.put(15,1,1);
+  	Matrix resultMtx = metrix.addWith(anotherMatrix);
+  	assertTrue(resultMtx.equals(expectedMtx));
   }
 
   @Test
   public void addition_test_for_2_by_3_mtx() {
-  	Matrix a = new Matrix(2,3);
-  	a.populate(10,0,0);
-  	a.populate(20,0,1);
-  	a.populate(22,0,2);
+  	Matrix metrix = new Matrix(2,3);
+  	metrix.put(10,0,0);
+  	metrix.put(20,0,1);
+  	metrix.put(5,0,2);
+  	metrix.put(20,1,0);
+  	metrix.put(10,1,1);
+  	metrix.put(6,1,2);
 
-  	a.populate(2,1,0);
-  	a.populate(6,1,1);
-  	a.populate(2,1,2);
+  	Matrix anotherMatrix = new Matrix(2,3);
+  	anotherMatrix.put(3,0,0);
+  	anotherMatrix.put(5,0,1);
+  	anotherMatrix.put(6,0,2);
+  	anotherMatrix.put(2,1,0);
+  	anotherMatrix.put(8,1,1);
+  	anotherMatrix.put(9,1,2);
 
-  	int[][] matrix = new int[][]{
-  	  { 1, 2, 3},
-  	  { 2, 3, 4}
-  	};
-  	int[][] expected = new int[][]{
-  	  { 11, 22, 25},
-  	  { 4, 9, 6}
-  	};
-  	int[][] result = a.addMatrices(matrix);
-  	assertTrue(Arrays.deepEquals(result, expected));
+  	Matrix expectedMtx = new Matrix(2 ,3);
+  	expectedMtx.put(13,0,0);
+  	expectedMtx.put(25,0,1);
+  	expectedMtx.put(11,0,2);
+  	expectedMtx.put(22,1,0);
+  	expectedMtx.put(18,1,1);
+  	expectedMtx.put(15,1,2);
+
+  	Matrix resultMtx = metrix.addWith(anotherMatrix);
+  	assertTrue(resultMtx.equals(expectedMtx));
   }
   @Test
   public void addition_test_for_negative_mtx() {
-  	Matrix a = new Matrix(2,3);
-  	a.populate(-10,0,0);
-  	a.populate(-20,0,1);
-  	a.populate(22,0,2);
+  	Matrix metrix = new Matrix(2,3);
+  	metrix.put(-10,0,0);
+  	metrix.put(20,0,1);
+  	metrix.put(-5,0,2);
+  	metrix.put(20,1,0);
+  	metrix.put(10,1,1);
+  	metrix.put(-6,1,2);
 
-  	a.populate(2,1,0);
-  	a.populate(-6,1,1);
-  	a.populate(2,1,2);
+  	Matrix anotherMatrix = new Matrix(2,3);
+  	anotherMatrix.put(3,0,0);
+  	anotherMatrix.put(5,0,1);
+  	anotherMatrix.put(6,0,2);
+  	anotherMatrix.put(2,1,0);
+  	anotherMatrix.put(8,1,1);
+  	anotherMatrix.put(9,1,2);
 
-  	int[][] matrix = new int[][]{
-  	  { 1, 2, 3},
-  	  { 2, 3, 4}
-  	};
-  	int[][] expected = new int[][]{
-  	  { -9, -18, 25},
-  	  { 4, -3, 6}
-  	};
-  	int[][] result = a.addMatrices(matrix);
-  	assertTrue(Arrays.deepEquals(result, expected));
+  	Matrix expectedMtx = new Matrix(2 ,3);
+  	expectedMtx.put(-7,0,0);
+  	expectedMtx.put(25,0,1);
+  	expectedMtx.put(1,0,2);
+  	expectedMtx.put(22,1,0);
+  	expectedMtx.put(18,1,1);
+  	expectedMtx.put(3,1,2);
+
+  	Matrix resultMtx = metrix.addWith(anotherMatrix);
+  	assertTrue(resultMtx.equals(expectedMtx));
+  }
+  
+  @Test
+  public void multiplication_test_for_2_by_3_and_3_by_2_matrix() {
+  	Matrix metrix = new Matrix(2,3);
+  	metrix.put(1,0,0);
+  	metrix.put(2,0,1);
+  	metrix.put(3,0,2);
+  	metrix.put(4,1,0);
+  	metrix.put(5,1,1);
+  	metrix.put(6,1,2);
+
+  	Matrix anotherMatrix = new Matrix(3,2);
+  	anotherMatrix.put(7,0,0);
+  	anotherMatrix.put(8,0,1);
+  	anotherMatrix.put(9,1,0);
+  	anotherMatrix.put(10,1,1);
+  	anotherMatrix.put(11,2,0);
+  	anotherMatrix.put(12,2,1);
+
+  	Matrix expectedMtx = new Matrix(2 ,2);
+  	expectedMtx.put(58,0,0);
+  	expectedMtx.put(64,0,1);
+  	expectedMtx.put(139,1,0);
+  	expectedMtx.put(154,1,1);
+
+  	Matrix resultMtx = metrix.multiplyWith(anotherMatrix);
+  	assertTrue(resultMtx.equals(expectedMtx));
+  }  
+  @Test
+  public void multiplication_test_for_3_by_2_and_2_by_3_matrix() {
+  	Matrix metrix = new Matrix(3,2);
+  	metrix.put(1,0,0);
+  	metrix.put(2,0,1);
+  	metrix.put(3,1,0);
+  	metrix.put(4,1,1);
+  	metrix.put(5,2,0);
+  	metrix.put(6,2,1);
+
+  	Matrix anotherMatrix = new Matrix(2,3);
+  	anotherMatrix.put(7,0,0);
+  	anotherMatrix.put(8,0,1);
+  	anotherMatrix.put(9,0,2);
+  	anotherMatrix.put(10,1,0);
+  	anotherMatrix.put(11,1,1);
+  	anotherMatrix.put(12,1,2);
+
+  	Matrix expectedMtx = new Matrix(3 ,3);
+  	expectedMtx.put(27,0,0);
+  	expectedMtx.put(30,0,1);
+  	expectedMtx.put(33,0,2);
+  	expectedMtx.put(61,1,0);
+  	expectedMtx.put(68,1,1);
+  	expectedMtx.put(75,1,2);
+  	expectedMtx.put(95,2,0);
+  	expectedMtx.put(106,2,1);
+  	expectedMtx.put(117,2,2);
+
+  	Matrix resultMtx = metrix.multiplyWith(anotherMatrix);
+  	assertTrue(resultMtx.equals(expectedMtx));
   }
 }

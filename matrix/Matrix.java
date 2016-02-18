@@ -3,42 +3,57 @@ package matrix;
 import java.util.Arrays;
 public class Matrix{
 	private int[][] matrix;
-	public Matrix(int m, int n){
-		int[][] matrix = new int[m][n];
-		this.matrix = matrix;		
+	private int rows;
+	private int columns;
+
+	public Matrix(int rows, int columns){
+		this.columns = columns;
+		this.rows = rows;
+		this.matrix = new int[rows][columns];		
 	};
 
-	public void populate(int number, int m, int n){
-		this.matrix[m][n] = number;
+	public void put(int number, int rowNo, int columnNo){
+		if(rowNo <= this.rows && columnNo <= this.columns){
+			this.matrix[rowNo][columnNo] = number;
+		}
 	};
 
-	public int[][] addMatrices(int[][] matrix1){
-		int[][] result = new int[matrix1.length][matrix1[0].length];
-		for(int i = 0; i < matrix1.length; i++){
-			for(int j = 0; j < matrix1[i].length;j++){
-				result[i][j] = matrix1[i][j] + this.matrix[i][j];
+	public Matrix addWith(Matrix addend){
+		Matrix result = new Matrix(this.rows, this.columns);
+		for(int i = 0; i < this.rows; i++){
+			for(int j = 0; j < this.matrix[i].length;j++){
+				result.put(addend.matrix[i][j] + this.matrix[i][j], i, j);
 			};
 		};
 		return result;
 	};
-	public String string(){
+
+	public String toString(){
 		String str = "";
-		for (int i = 0;i < this.matrix.length ;i++ ) {
+		for (int i = 0;i < rows ;i++ ) {
 			str += Arrays.toString(this.matrix[i])+"\n";
 		}
 		return str;
 	}
-	// public int[][] multiplyMatrices(int[][] matrix1, int[][] matrix2){
-	// 	int[][] result = new int[matrix1.length][matrix2[0].length];
-	// 	for (int i = 0;i < matrix1.length ;i++ ) {
-	// 		for(int j = 0; j < matrix1[i].length; j++){
-	// 			for (int k = 0;k < matrix2.length ;k++) {
-	// 				for (int l = 0;l < matrix2[k].length ;l++) {
-	// 					int 
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// 	int product = 
-	// };
+
+	public boolean equals(Matrix anotherMtx){
+		return Arrays.deepEquals(this.matrix, anotherMtx.matrix);
+	}
+
+	public Matrix multiplyWith(Matrix anotherMtx){
+		Matrix result = new Matrix(this.rows, anotherMtx.columns);
+		for (int i = 0;i < this.rows ;i++ ) {
+			for(int j = 0;j < anotherMtx.columns; j++){
+				int sum = 0;
+				for(int k = 0;k < this.columns;k++){
+					sum += this.matrix[i][k] * anotherMtx.matrix[k][j];
+				}
+				result.put(sum, i, j);
+			}
+		}
+		return result;
+	}
 }
+
+
+
